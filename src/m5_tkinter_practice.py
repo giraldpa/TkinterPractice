@@ -2,8 +2,8 @@
 This project lets you try out Tkinter/Ttk and practice it!
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Pattie GIraldo.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import tkinter
 from tkinter import ttk
@@ -12,37 +12,47 @@ from tkinter import ttk
 def main():
     """ Constructs a GUI with stuff on it. """
     # ------------------------------------------------------------------
-    # TODO: 2. After reading and understanding the m1e module,
+    # done: 2. After reading and understanding the m1e module,
     #   ** make a window that shows up. **
     # ------------------------------------------------------------------
+    root = tkinter.Tk()
 
     # ------------------------------------------------------------------
-    # TODO: 3. After reading and understanding the m2e module,
+    # done: 3. After reading and understanding the m2e module,
     #   ** put a Frame on the window. **
     # ------------------------------------------------------------------
+    frame1 = ttk.Frame(root, padding=20)
+    frame1.grid()
 
     # ------------------------------------------------------------------
-    # TODO: 4. After reading and understanding the m2e module,
+    # done: 4. After reading and understanding the m2e module,
     #   ** put a Button on the Frame. **
     # ------------------------------------------------------------------
+    say_hello_button = ttk.Button(frame1, text='Say Hello')
+    say_hello_button.grid()
 
     # ------------------------------------------------------------------
-    # TODO: 5. After reading and understanding the m3e module,
+    # done: 5. After reading and understanding the m3e module,
     #   ** make your Button respond to a button-press **
     #   ** by printing   "Hello"  on the Console.     **
     # ------------------------------------------------------------------
-
+    say_hello_button['command'] = (lambda: print('Hello'))
     # ------------------------------------------------------------------
-    # TODO: 6. After reading and understanding the m4e module,
+    # done: 6. After reading and understanding the m4e module,
     #   -- Put an Entry box on the Frame.
     #   -- Put a second Button on the Frame.
     #   -- Make this new Button, when pressed, print "Hello"
     #        on the Console if the current string in the Entry box
     #        is the string 'ok', but print "Goodbye" otherwise.
     # ------------------------------------------------------------------
+    my_entry_box = ttk.Entry(frame1)
+    my_entry_box.grid()
 
+    hello_goodbye_button = ttk.Button(frame1, text='Check my okay')
+    hello_goodbye_button['command'] = lambda: check_for_okay(my_entry_box)
+    hello_goodbye_button.grid()
     # ------------------------------------------------------------------
-    # TODO: 7.
+    # done: 7.
     #    -- Put a second Entry on the Frame.
     #    -- Put a third Button on the frame.
     #    -- Make this new Button respond to a button-press as follows:
@@ -64,10 +74,32 @@ def main():
     #      s = entry_box.get()
     #      n = int(s)
     ####################################################################
+    s = ttk.Entry(frame1)
+    s.grid()
 
+    string_button = ttk.Button(frame1, text='String * N')
+    string_button['command'] = lambda: print_str(my_entry_box, s)
+    string_button.grid()
     # ------------------------------------------------------------------
-    # TODO: 8. As time permits, do other interesting GUI things!
+    # done: 8. As time permits, do other interesting GUI things!
     # ------------------------------------------------------------------
+
+    root.mainloop()
+
+
+def check_for_okay(entry_box):
+    contents = entry_box.get()
+    if contents == 'ok':
+        print('Hello')
+    else:
+        print('Goodbye')
+
+
+def print_str(my_entry_box, second_entry_box):
+    contents = my_entry_box.get()
+    n = int(second_entry_box.get())
+    for k in range(n):
+        print(contents)
 
 
 # ----------------------------------------------------------------------
